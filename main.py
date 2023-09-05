@@ -1,4 +1,5 @@
 import tkinter as tk
+import tkinter.messagebox as msgbox
 
 
 class Window(tk.Tk):
@@ -20,11 +21,15 @@ class Window(tk.Tk):
         goodbye_button.pack(side=tk.RIGHT, padx=(0, 20), pady=(0, 20))
 
     def say_hello(self):
-        self.label_text.set("Hello GUI App")
+        msgbox.showwarning('Hello', 'Hello Tkinter gui app')
 
     def say_goodbye(self):
-        self.label_text.set("Goodbye! \n (Closing in 2 seconds)")
-        self.after(2000, self.destroy)
+        if msgbox.askyesno("Close Window?", "Would you like to close this window"):
+            self.label_text.set("Window close in 2 seconds")
+            self.after(2000, self.destroy)
+        else:
+            msgbox.showinfo(
+                'Not Closing!', "Great! this window will stay open")
 
 
 if __name__ == '__main__':
