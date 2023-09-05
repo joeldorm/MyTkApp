@@ -5,8 +5,10 @@ class Window(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Hello Tkinter!")
+        self.label_text = tk.StringVar()
+        self.label_text.set("Choose One")
 
-        self.label = tk.Label(self, text="Hello Tkinter")
+        self.label = tk.Label(self, text=self.label_text.get())
         self.label.pack(fill=tk.BOTH, expand=1, padx=100, pady=50)
 
         hello_button = tk.Button(
@@ -18,10 +20,10 @@ class Window(tk.Tk):
         goodbye_button.pack(side=tk.RIGHT, padx=(0, 20), pady=(0, 20))
 
     def say_hello(self):
-        self.label.configure(text="Hello GUI App")
+        self.label_text.set("Hello GUI App")
 
     def say_goodbye(self):
-        self.label.configure(text="Goodbye! \n (Closing in 2 seconds)")
+        self.label_text.set("Goodbye! \n (Closing in 2 seconds)")
         self.after(2000, self.destroy)
 
 
